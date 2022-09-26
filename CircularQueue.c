@@ -36,7 +36,7 @@ queue *newQueue(){
 void enqueue(queue *q, int n){
     if(isQueueFull(q)){
         printf("Queue is Full - Queue Overflow\n");
-        return;
+        exit(1);
     }
 
     q->data[q->tail % N] = n;
@@ -46,7 +46,7 @@ void enqueue(queue *q, int n){
 int dequeue(queue *q){
     if(isQueueEmpty(q)){
         printf("Queue is Empty - Queue Underflow\n");
-        return -1;
+        exit(1);
     }
 
     q->head++;
