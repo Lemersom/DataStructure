@@ -32,7 +32,7 @@ stack *newStack(){
 void push(stack *s, int n){
     if(isStackFull(s)){
         printf("\nStack is Full - Stack Overflow\n");
-        return;
+        exit(1);
     }
     s->data[s->top] = n;
     s->top++;
@@ -41,7 +41,7 @@ void push(stack *s, int n){
 int pop(stack *s){
     if(isStackEmpty(s)){
         printf("\nStack is Empty - Stack Underflow\n");
-        return -1;
+        exit(1);
     }
     s->top--;
     return s->data[s->top];
@@ -50,6 +50,7 @@ int pop(stack *s){
 int top(stack *s){
     if(isStackEmpty(s)){
         printf("\nStack is Empty -- Stack Underflow\n");
+        exit(1);
     }
     return s->data[s->top--];
 }
