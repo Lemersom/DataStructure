@@ -52,7 +52,7 @@ int top(stack *s){
         printf("\nStack is Empty -- Stack Underflow\n");
         exit(1);
     }
-    return s->data[s->top--];
+    return s->data[s->top-1];
 }
 
 int isStackEmpty(stack *s){
