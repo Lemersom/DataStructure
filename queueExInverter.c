@@ -149,7 +149,7 @@ int top(stack *s){
     if(isStackEmpty(s)){
         printf("\nStack is Empty -- Stack Underflow\n");
     }
-    return s->data[s->top--];
+    return s->data[s->top-1];
 }
 
 int isStackEmpty(stack *s){
