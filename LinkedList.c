@@ -171,7 +171,12 @@ void removeValueOn(list *l, int index){
 	node *n1 = l->first;
 	node *n2;
 	int c = 0;
-	while(n1 != NULL){
+	if(index == 0){
+		removeFirstValue(l);
+		return;
+	}
+	else{
+		while(n1 != NULL){
 		if(c == index){
 			n2->next = n1->next;
 			free(n1);
@@ -180,8 +185,9 @@ void removeValueOn(list *l, int index){
 		c++;
 		n2 = n1;
 		n1 = n1->next;
+		}
 	}
-
+	
 	printf("ERRO ao remover - Posicao nao encontrada");
 	exit(1);
 }
