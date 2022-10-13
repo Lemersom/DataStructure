@@ -148,7 +148,9 @@ node *addValueOn(list *l, int value, int index){
 }
 
 void removeFirstValue(list *l){
-	l->first = l->first->next;
+	node *n = l->first;
+	l->first = n->next;
+    	free(n);
 }
 
 void removeLastValue(list *l){
