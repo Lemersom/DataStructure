@@ -32,9 +32,9 @@ int main(){
 	
 	dlist *l = newDlist();
 
-	
-	
-	showDlist(l);
+
+
+    showDlist(l);
 	
 	return 0;
 }
@@ -86,9 +86,16 @@ void addLast(dlist *l, int value){
 }
 
 void addOn(dlist *l, int value, int pos){
+	if(pos == 0){
+		addFirst(l, value); return;
+	}
+	else if(pos == dlistSize(l)){
+		addLast(l, value); return;
+	}
+
 	node *n = l->first;
 	int i = 0;
-	while(i < dlistSize(l)){
+	while(n != NULL){
 		if(pos == i){
 			node *n1 = newNode(value);
 			n->prev->next = n1;
@@ -106,9 +113,10 @@ void addOn(dlist *l, int value, int pos){
 }
 
 int dlistSize(dlist *l){
-	node *n = l->first;
 	if(isDlistEmpty(l)) return 0;
 	
+	node *n = l->first;
+
 	int i = 0;
 	while(n != NULL){
 		i++;
@@ -125,7 +133,7 @@ void showDlist(dlist *l){
 		printf("[%d] ", n->info);
 		n = n->next;
 	}
-	printf("\n");
+    printf("\n");
 }
 
 node *searchNode(dlist *l, int value){
@@ -147,9 +155,11 @@ void deleteValue(dlist *l, int value){
 
 	if(n == l->first){
 		deleteFirst(l);
+		return;
 	}
 	if(n == l->last){
 		deleteLast(l);
+		return;
 	}
 	
 	n->prev->next = n->next;
@@ -160,6 +170,11 @@ void deleteValue(dlist *l, int value){
 }
 
 void deleteFirst(dlist *l){
+	if(isDlistEmpty(l)){
+		printf("\nList is Empty");
+		exit(1);
+	}
+
 	node *n = l->first;
 	l->first = n->next;
 	l->first->prev = NULL;
@@ -167,6 +182,11 @@ void deleteFirst(dlist *l){
 }
 
 void deleteLast(dlist *l){
+	if(isDlistEmpty(l)){
+		printf("\nList is Empty");
+		exit(1);
+	}
+
 	node *n = l->last;
 	l->last = l->last->prev;
 	l->last->next = NULL;
@@ -174,10 +194,12 @@ void deleteLast(dlist *l){
 }
 
 void deleteOn(dlist *l, int pos){
-	node *n = l->first;
-	int i = 0;
+	if(isDlistEmpty(l)){
+		printf("\nList is Empty");
+		exit(1);
+	}
 
-	if(pos < 0 || pos > dlistSize(l)){
+	if(pos < 0 || pos > dlistSize(l) - 1){
 		printf("\nPosition Error");
 		exit(1);
 	}
@@ -185,10 +207,13 @@ void deleteOn(dlist *l, int pos){
 		deleteFirst(l);
 		return;
 	}
-	if(pos == dlistSize(l)){
+	if(pos == dlistSize(l) - 1){
 		deleteLast(l);
 		return;
 	}
+
+	node *n = l->first;
+	int i = 0;
 
 	while(n != NULL){
 		if(i == pos) break;
