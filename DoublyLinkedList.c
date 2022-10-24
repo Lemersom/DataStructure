@@ -22,7 +22,6 @@ void addOn(dlist*, int, int);
 int dlistSize(dlist*);
 void showDlist(dlist*);
 node *searchNode(dlist*, int);
-
 void deleteValue(dlist*, int);
 void deleteOn(dlist*, int); //using position
 void deleteFirst(dlist*);
@@ -126,6 +125,7 @@ void showDlist(dlist *l){
 		printf("[%d] ", n->info);
 		n = n->next;
 	}
+	printf("\n");
 }
 
 node *searchNode(dlist *l, int value){
