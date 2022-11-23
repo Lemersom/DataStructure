@@ -44,6 +44,7 @@ int max(int, int);
 node *insert(node*, int);
 node *search(node*, int);
 
+
 int main(){
 
     return 0;
@@ -52,20 +53,20 @@ int main(){
 
 //sem recursao
 node *insert(node *tree, int value){
-    if(tree == NULL) return maketree(value);
+    if(tree == NULL) return makeTree(value);
     node *aux;
     while(tree != NULL){
         aux = tree;
         if(value < tree->info) tree = tree->left;
         else tree = tree->right;
     }
-    if(value < aux->info) return addLeft(aux, valor);
-    else return addRight(aux, value);
+    if(value < aux->info) addLeft(aux, value);
+    else addRight(aux, value);
 }
 
 //sem recursao
 node *search(node *tree, int key){
-    while(tree- != NULL){
+    while(tree != NULL){
         if(tree->info == key) break;
         else if(key < tree->info) tree = tree->left;
         else tree = tree->right;
